@@ -1,0 +1,49 @@
+
+<div class="container" *ngIf="!isLoading">
+  <div class="card card-container">
+
+    <div class="social-signup">
+      <a class="btn btn-block social-btn google" [href]="aaa">
+        <img src="/assets/img/google-logo.png" alt="Google" /> Sign up with Google</a>
+      <a class="btn btn-block social-btn facebook" [href]="bbb">
+        <img src="/assets/img/fb-logo.png" alt="Facebook" /> Sign up with Facebook</a>
+      <a class="btn btn-block social-btn github" [href]="ccc">
+        <img src="/assets/img/github-logo.png" alt="Github" /> Sign up with Github</a>
+    </div>
+
+<!--    <img src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" class="profile-img-card"/>-->
+    <form name="form-signup" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
+      <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
+        {{errorMessage}}
+      </div>
+      <div class="form-group" [ngClass]="{'has-error': f.submitted && !name.valid}">
+        <label for="name">name</label>
+        <input type="text" name="name" class="form-control" id="name" [(ngModel)]="user.name" (keydown.space)="$event.preventDefault()" #name="ngModel" required/>
+        <div class="alert alert-danger" *ngIf="f.submitted && !name.valid">
+          name is required.
+        </div>
+      </div>
+      <div class="form-group" [ngClass]="{'has-error': f.submitted && !email.valid}">
+        <label for="email">Email</label>
+        <input type="email" name="email" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" (keydown.space)="$event.preventDefault()"
+               id="email" [(ngModel)]="user.email" #email="ngModel" required/>
+        <div class="alert alert-danger" *ngIf="f.submitted && !email.valid || email.errors && (email.touched || email.dirty)">
+          Email is required.
+        </div>
+      </div>
+
+      <div class="form-group" [ngClass]="{'has-error': f.submitted && !password.valid}">
+        <label for="password">Password</label>
+        <input type="password" id="password" #password="ngModel" [(ngModel)]="user.password"
+               class="form-control"  name="password" required pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$" (keydown.space)="$event.preventDefault()">
+        <div *ngIf="password.invalid && password.errors && (f.submitted || password.touched || password.dirty)" class="alert alert-danger">
+          <div *ngIf="password.errors.required"> Password is required</div>
+          <div *ngIf="password.errors.pattern"> Minimum 8 characters with at least one number, one letter and one special character</div>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+    </form>
+    <a routerLink="/login" class="btn btn-link">I have an Account!</a>
+  </div>
+</div>

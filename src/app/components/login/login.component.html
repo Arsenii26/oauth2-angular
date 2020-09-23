@@ -1,0 +1,46 @@
+
+<!--<ng-template appPlaceholder></ng-template>-->
+<div *ngIf="isLoading" style="text-align: center">
+  <p>Loading...</p>
+</div>
+<div class="container" *ngIf="!isLoading">
+  <div class="container">
+    <div class="card card-container">
+
+
+<div class="social-login">
+  <a class="btn btn-block social-btn google" [href]="aaa">
+    <img src="/assets/img/google-logo.png" alt="Google" /> Log in with Google</a>
+  <a class="btn btn-block social-btn facebook" [href]="bbb">
+    <img src="/assets/img/fb-logo.png" alt="Facebook" /> Log in with Facebook</a>
+  <a class="btn btn-block social-btn github" [href]="ccc">
+    <img src="/assets/img/github-logo.png" alt="Github" /> Log in with Github</a>
+</div>
+
+
+<!--    <img src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" class="profile-img-card"/>-->
+    <form name="form-signin" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
+      <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
+        {{errorMessage}}
+      </div>
+      <div class="form-group" [ngClass]="{'has-error': f.submitted && !email.valid}">
+        <label for="email">Email</label>
+        <input type="text" name="email" class="form-control" id="email" [(ngModel)]="user.email" #email="ngModel" required/>
+<!--        <input type="text" name="email" class="form-control" id="email" [(ngModel)]="email" (ngModelChange)="email=$event" required/>-->
+        <div class="alert alert-danger" *ngIf="f.submitted && !email.valid">
+          Email is required.
+        </div>
+      </div>
+      <div class="form-group" [ngClass]="{'has-error': f.submitted && !password.valid}">
+        <label for="password">Password</label>
+        <input type="password" name="password" class="form-control" id="password" [(ngModel)]="user.password" #password="ngModel" required/>
+<!--        <input type="password" name="password" class="form-control" id="password" [(ngModel)]="password" (ngModelChange)="password=$event" required/>-->
+        <div class="alert alert-danger" *ngIf="f.submitted && !password.valid">
+          Password is required.
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+    </form>
+    <a routerLink="/register" class="btn btn-link">Create New Account!</a>
+  </div>
+</div>
