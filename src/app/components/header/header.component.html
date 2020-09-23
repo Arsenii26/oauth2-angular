@@ -1,0 +1,28 @@
+<nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+  <div class="container">
+    <div class="app-branding">
+      <a routerLink="/"  className="app-title">Spring Social</a>
+    </div>
+    <div class="app-options">
+      <nav class="app-nav">
+        <ul *ngIf="currentUser">
+          <li>
+            <a routerLink="/user-account" class="nav-link">Profile</a>
+<!--            <NavLink to="/profile">Profile</NavLink>-->
+          </li>
+          <li>
+            <a (click)="logOut()" class="nav-link">Logout</a>
+          </li>
+        </ul>
+        <ul *ngIf="!currentUser">
+          <li>
+            <a routerLink="/login" class="nav-link">Login</a>
+          </li>
+          <li>
+            <a routerLink="/register" class="nav-link">Signup</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</nav>

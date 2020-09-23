@@ -1,1 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
+.green-snackbar {
+  background: green !important;
+  color: white;
+  /*align-items: flex-start !important;*/
+  /*justify-content: flex-start !important*/
+}
